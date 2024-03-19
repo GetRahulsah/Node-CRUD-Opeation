@@ -1,0 +1,141 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node CRUD App</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header{
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+   
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      border-bottom: 1px solid #ccc;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-info {
+      flex: 1;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+      margin-left: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a.delete {
+      color: #dc3545;
+    }
+
+    a.delete:hover {
+      color: #a30818;
+    }
+
+    .add-button {
+      display: inline-block;
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .add-button:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 600px) {
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .user-info {
+        margin-top: 10px;
+      }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logout-button {
+      background-color: #dc3545;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .logout-button:hover {
+      background-color: #a30818;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>User List</h1>
+    <a href="/logout" class="logout-button">Logout</a>
+  </header>
+  <main>
+    <ul>
+      <% users.forEach(user => { %>
+        <li>
+          <div class="user-info">
+            <strong>Name:</strong> <%= user.name %><br>
+            <strong>Email:</strong> <%= user.email %><br>
+            <strong>Phone Number:</strong> <%= user.phoneNumber %><br>
+            <strong>Address:</strong> <%= user.address %><br>
+            <strong>Department:</strong> <%= user.department %>
+          </div>
+          <a href="/edit/<%= user.id %>">Edit</a>
+          <a href="/delete/<%= user.id %>" class="delete">Delete</a>
+        </li>
+      <% }); %>
+    </ul>
+    <a href="/add" class="add-button">Add User</a>
+  </main>
+</body>
+</html>
